@@ -27,16 +27,40 @@ CREATE USER 'sys_temp'@'localhost' IDENTIFIED BY 'sys_temp';
 
 ### Выполните запрос на получение списка пользователей в базе данных. (скриншот)
 SELECT user FROM mysql.user;
+
 ![Скриншот](https://github.com/aleman7713/go_db/blob/main/img/select_users.png)
 
+### Дайте все права для пользователя sys_temp.
+GRANT ALL PRIVILEGES ON *.* TO 'sys_temp'@'localhost';
+
+### Выполните запрос на получение списка прав для пользователя sys_temp. (скриншот)
+SHOW GRANTS FOR 'sys_temp'@'localhost';
+
+![Скриншот](https://github.com/aleman7713/go_db/blob/main/img/%D0%9F%D1%80%D0%B0%D0%B2%D0%B0_%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F.png)
+
+### При работе в IDE сформируйте ER-диаграмму получившейся базы данных. При работе в командной строке используйте команду для получения всех таблиц базы данных. (скриншот)
+
+![Скриншот](https://github.com/aleman7713/go_db/blob/main/img/%D0%94%D0%B8%D0%B0%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0_%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86.png)
+
+### Составьте таблицу, используя любой текстовый редактор или Excel, в которой должно быть два столбца: в первом должны быть названия таблиц восстановленной базы, во втором названия первичных ключей этих таблиц. Пример: (скриншот/текст)
+
+![Скриншот](https://github.com/aleman7713/go_db/blob/main/img/tables_pk.png)
 
 
-Поле для вставки кода...
-....
-....
-....
-....
+### Блок кода
 ```
+CREATE USER 'sys_temp'@'localhost' IDENTIFIED BY 'sys_temp';
 
-`При необходимости прикрепитe сюда скриншоты
-![Название скриншота](ссылка на скриншот)`
+SELECT user FROM mysql.user;
+
+GRANT ALL PRIVILEGES ON *.* TO 'sys_temp'@'localhost';
+
+SHOW GRANTS FOR 'sys_temp'@'localhost';
+
+select u.TABLE_NAME, u.COLUMN_NAME, u.ORDINAL_POSITION
+from INFORMATION_SCHEMA.KEY_COLUMN_USAGE u
+where
+   u.TABLE_SCHEMA = 'sakila'  and
+   u.CONSTRAINT_NAME = 'PRIMARY'
+order by u.TABLE_NAME, u.ORDINAL_POSITION
+```
